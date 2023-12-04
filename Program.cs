@@ -39,16 +39,28 @@ string[] CheckThreeSimbolElements(string[] array)
 
 void PrintArray(string[] array)
 {
-    System.Console.Write($"[{array[0]}");
+    System.Console.Write($"[\"{array[0]}\"");
     for (int i = 1; i < array.Length; i++)
     {
-        System.Console.Write($", {array[i]}");
+        System.Console.Write($", \"{array[i]}\"");
     }
     System.Console.Write("]");
     System.Console.WriteLine("\n");
 }
 
-string [] array = {"Дерево", "мох", "сосна", ":-)"};
+string ReadIn(string msg)
+{
+    System.Console.WriteLine(msg);
+    string arrayElement = Console.ReadLine();
+    return arrayElement;
+}
+
+// string[] array = { "Дерево", "мох", "сосна", ":-)" };
+string[] array = new string[5];
+for (int i = 0; i < array.Length; i++)
+{
+  array[i] = ReadIn($"Введите {i+1} элемент массива: ");  
+}
 PrintArray(array);
 
 PrintArray(CheckThreeSimbolElements(array));

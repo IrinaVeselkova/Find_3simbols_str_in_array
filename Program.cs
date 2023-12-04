@@ -8,6 +8,7 @@
 // [“1234”, “1567”, “-2”, “computer science”] → [“-2”]
 // [“Russia”, “Denmark”, “Kazan”] → []
 
+using System.ComponentModel.Design.Serialization;
 using System.Security.Cryptography;
 
 string[] CheckThreeSimbolElements(string[] array)
@@ -44,4 +45,10 @@ void PrintArray(string[] array)
         System.Console.Write($", {array[i]}");
     }
     System.Console.Write("]");
+    System.Console.WriteLine("\n");
 }
+
+string [] array = {"Дерево", "мох", "сосна", ":-)"};
+PrintArray(array);
+
+PrintArray(CheckThreeSimbolElements(array));

@@ -8,35 +8,32 @@
 // [“1234”, “1567”, “-2”, “computer science”] → [“-2”]
 // [“Russia”, “Denmark”, “Kazan”] → []
 
-using System.ComponentModel.Design.Serialization;
-using System.Security.Cryptography;
-
-string[] CheckThreeSimbolElements(string[] array)
+// метод поиска длины нового массива
+int FindNewArrayLength(string[] array)
 {
     int count = 0;
     for (int i = 0; i < array.Length; i++)
     {
-        if (array[i].Length <= 3) count++;
+        if (array[i].Length <= 3 && array[i].Length > 0) count++;
     }
-    // if (count == 0) System.Console.WriteLine($"[]");
-    // else
-    // {
+    return count;
+}
+// метод создания нового массива из строк, состоящих менее, чем из трех символов
+string[] CreateNewArray(string[] array, int count)
+{
     string[] resultArray = new string[count];
     count = 0;
     for (int j = 0; j < array.Length; j++)
     {
+        if (array[j].Length <= 3 && array[j].Length > 0)
         {
-            if (array[j].Length <= 3)
-            {
-                resultArray[count] = array[j];
-                count++;
-            }
+            resultArray[count] = array[j];
+            count++;
         }
     }
-    //}
     return resultArray;
 }
-
+// метод для печати массива
 void PrintArray(string[] array)
 {
     System.Console.Write($"[\"{array[0]}\"");
@@ -45,22 +42,78 @@ void PrintArray(string[] array)
         System.Console.Write($", \"{array[i]}\"");
     }
     System.Console.Write("]");
-    System.Console.WriteLine("\n");
-}
 
-string ReadIn(string msg)
+}
+// метод для ввода данных из консоли
+string ReadStr(string msg)
 {
     System.Console.WriteLine(msg);
     string arrayElement = Console.ReadLine();
+    System.Console.WriteLine();
     return arrayElement;
 }
-
-// string[] array = { "Дерево", "мох", "сосна", ":-)" };
-string[] array = new string[5];
-for (int i = 0; i < array.Length; i++)
+// Основная функция программы (алгоритм)
+void AlgoritmToPrint(string[] array)
 {
-  array[i] = ReadIn($"Введите {i+1} элемент массива: ");  
+    if (FindNewArrayLength(array) == 0)
+    {
+        System.Console.WriteLine("Ничего не нашлось :(\n");
+        PrintArray(array);
+        System.Console.Write(" -> ");
+        System.Console.Write("[]\n");
+        System.Console.WriteLine();
+    }
+    else
+    {
+        System.Console.WriteLine("Вот что получилось :)\n");
+        PrintArray(array);
+        System.Console.Write(" -> ");
+        PrintArray(CreateNewArray(array, FindNewArrayLength(array)));
+        System.Console.WriteLine();
+    }
 }
-PrintArray(array);
+// выполняем программу
 
-PrintArray(CheckThreeSimbolElements(array));
+// задаем массив массивов для рандомного выбора массива, если пользователь не захотел вводить массив сам
+
+string[][] arrayRandom = new string[5][];
+
+arrayRandom[0] = new string[5] { "Дерево", "мох", "сосна", ":-*", "." };
+arrayRandom[1] = new string[6] { "Соня,", "Привет", "Как", "Твои", "Дела", "?" };
+arrayRandom[2] = new string[7] { "Мороз", "и", "солнце", "-", "день", "чудесный", "!" };
+arrayRandom[3] = new string[3] { "Раз", "два", "три" };
+arrayRandom[4] = new string[4] { "1234", "1567", "-2", "computer science" };
+
+//{"Дерево", "мох", "сосна", ":-)","."};
+
+System.Console.WriteLine
+("Ищем все элементы массива меньше или равные трем символам.\n\nНажмите кнопку \"Y\", если хотите ввести массив\nлибо любую другую кнопку, если хотите использовать готовый массив\n");
+
+if (Console.ReadKey(true).Key == ConsoleKey.Y)
+{
+    int n = Convert.ToInt32(ReadStr("Введите количество элементов массива (больше 0): "));
+    if (n >0 )
+    {
+        string[] array = new string[n];
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = ReadStr($"Введите {i + 1} элемент массива: ");
+        }
+        AlgoritmToPrint(array);
+    }
+    else
+    {
+        System.Console.WriteLine("Упс:-( Кажется кто-то ввел недопустимое чило.\n Введите число больше 0!");
+    }
+}
+else AlgoritmToPrint(arrayRandom[new Random().Next(0, 5)]);
+
+
+
+
+
+
+
+
+

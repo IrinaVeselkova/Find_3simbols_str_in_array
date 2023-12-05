@@ -60,8 +60,8 @@ void AlgoritmToPrint(string[] array)
         System.Console.WriteLine("Ничего не нашлось :(\n");
         PrintArray(array);
         System.Console.Write(" -> ");
-        System.Console.Write("[]\n");
-        System.Console.WriteLine();
+        System.Console.Write("[]\n\n");
+        
     }
     else
     {
@@ -79,7 +79,7 @@ void AlgoritmToPrint(string[] array)
 string[][] arrayRandom = new string[5][];
 
 arrayRandom[0] = new string[5] { "Дерево", "мох", "сосна", ":-*", "." };
-arrayRandom[1] = new string[6] { "Соня,", "Привет", "Как", "Твои", "Дела", "?" };
+arrayRandom[1] = new string[6] { "Соня,", "Привет!", "Как", "Твои", "Дела", "?" };
 arrayRandom[2] = new string[7] { "Мороз", "и", "солнце", "-", "день", "чудесный", "!" };
 arrayRandom[3] = new string[3] { "Раз", "два", "три" };
 arrayRandom[4] = new string[4] { "1234", "1567", "-2", "computer science" };
